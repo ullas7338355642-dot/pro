@@ -1,0 +1,20 @@
+on:
+	push:
+		branches: ['main']
+		pull request:
+			branches: ['main']
+		
+jobs:
+	build:
+		runs on: ubuntu-latest
+		steps:
+			- name: checkout source code
+			user: actions/chechout@v4
+			- name: Set up JDK
+			user: actions/setup-java@4
+			with:
+				java-version: "17"
+				distribuction: "temurin"
+				cache: maven
+				- name: Build with maven
+				run: mvn clean package
